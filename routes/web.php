@@ -14,7 +14,6 @@ use App\Http\Controllers\Test;
 */
 \Illuminate\Support\Facades\Auth::routes();
 // Админка
-//Route::get('admin/topics', \App\Http\Controllers\Admin\Topics\IndexController::class);
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', \App\Http\Controllers\Admin\IndexController::class)
         ->name('admin.index');
