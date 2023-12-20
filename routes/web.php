@@ -14,13 +14,12 @@ use App\Http\Controllers\Test;
 */
 \Illuminate\Support\Facades\Auth::routes();
 // Админка
+//Route::get('admin/topics', \App\Http\Controllers\Admin\Topics\IndexController::class);
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', \App\Http\Controllers\Admin\IndexController::class)
         ->name('admin.index');
-    Route::get('/{user}', \App\Http\Controllers\Admin\Users\DetailController::class)
-        ->name('user.detail');
     // Темы
-    Route::prefix('topics')->middleware('breadcrumbs')->group(function () {
+    Route::prefix('topics')->group(function () {
         Route::get('/', \App\Http\Controllers\Admin\Topics\IndexController::class)
             ->name('admin.topics');
         Route::get('/add', \App\Http\Controllers\Admin\Topics\ShowFormAddController::class)
@@ -71,9 +70,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
             //~Вопросы и ответы
         });
     });
-
+    Route::get('/{user}', \App\Http\Controllers\Admin\Users\DetailController::class)
+        ->name('user.detail');
 });
-Route::post('ckeditor/image_upload', '\App\Http\Controllers\CKEditorController@upload')->name('upload');
+//Route::post('ckeditor/image_upload', '\App\Http\Controllers\CKEditorController@upload')->name('upload');
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [Test::class, 'downTown']);
 });
