@@ -1,0 +1,7 @@
+.js-col:hover {
+    background-color: rgb(144, 156, 165);
+    cursor: pointer;
+}
+.js-col {
+    background-color: #f7fafc;
+}
